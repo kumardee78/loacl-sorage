@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        #container{
+            height: 100vh;
+            background-color: whitesmoke;
+            font-family: "cooper black";
+            padding-top: 2rem;
+            color: blue;
+            text-shadow: 0.2rem 0.2rem 1rem red;
+        }
+        textarea{
+            margin-top: 1.5rem;
+            border-radius: 0.5rem;
+            padding: 1rem 1rem;
+            box-shadow: 0.2rem 0.2rem 1rem 0.01rem red ;
+            font-size: 1rem;
+        }
+        #container div{
+            text-align: center;
+            margin: 5rem auto;
+           
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <h1>Auto Save Textarea</h1>
+            <textarea name="" id="textarea" cols="65" rows="15" placeholder="Start typing here..."></textarea>
+
+        </div>
+    </div>
+    <script>
+        const textarea = document.getElementById("textarea")
+        textarea.addEventListener("input", takeInput)
+        function takeInput(){
+            const text = textarea.value;
+            localStorage.setItem("storeText", text)
+        }
+        window.addEventListener("load", () => {
+            const storeText = localStorage.getItem("storeText")
+            if(storeText){
+                textarea.value = storeText;
+            }
+        })
+
+    </script>
+</body>
+</html>
